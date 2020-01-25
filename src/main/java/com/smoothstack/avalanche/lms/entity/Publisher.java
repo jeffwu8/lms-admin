@@ -1,6 +1,7 @@
 package com.smoothstack.avalanche.lms.entity;
 
 import java.util.Collection;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,6 +31,21 @@ public class Publisher {
 	@OneToMany(mappedBy = "publisher")
 	private Collection<Book> publisherBooks;
 
+	/*
+	 * Constructors
+	 */
+	public Publisher() {}
+	public Publisher(Long id, String name, String address, String phone) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+	}
+	
+	/*
+	 * Getters and Setters
+	 */
+	
 	public Long getId() {
 		return id;
 	}
@@ -56,4 +72,24 @@ public class Publisher {
 		this.phone = phone;
 	}	
 	
+	/*
+	 * Equals and Hashcode
+	 */
+	@Override
+	public boolean equals(Object o)
+	{
+		if( this == o) return true;
+		if( o == null || getClass() != o.getClass())
+			return false;
+		Publisher other = (Publisher) o;
+		return Objects.equals(getName(), other.getName())
+				&& Objects.equals(getAddress(), other.getAddress())
+				&& Objects.equals(getPhone(), other.getPhone());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(name, address, phone);
+	}
 }

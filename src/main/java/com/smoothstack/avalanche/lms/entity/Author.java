@@ -1,5 +1,6 @@
 package com.smoothstack.avalanche.lms.entity;
 
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -30,6 +31,15 @@ public class Author {
     		joinColumns = @JoinColumn(name = "authorId", referencedColumnName = "id"),
     		inverseJoinColumns = @JoinColumn(name = "bookId", referencedColumnName = "id"))
     private Set<Book> books;
+    
+    /*
+     * Constructors
+     */
+    public Author() {}
+	public Author(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
     /*
      * Getters
@@ -49,5 +59,24 @@ public class Author {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	/*
+	 * Equals/ HashCode
+	 */
+	@Override
+	public boolean equals(Object o)
+	{
+		if( this == o) return true;
+		if( o == null || getClass() != o.getClass())
+			return false;
+		Author other = (Author) o;
+		return Objects.equals(getName(), other.getName());
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(name);
 	}
 }

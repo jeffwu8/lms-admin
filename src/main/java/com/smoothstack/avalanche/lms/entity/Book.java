@@ -3,6 +3,7 @@ package com.smoothstack.avalanche.lms.entity;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,8 +36,9 @@ public class Book {
 	@JoinColumn(name = "publisher_id")
 	private Publisher publisher;
 	
-	@OneToMany(mappedBy = "bookLoanKey.book")
-	private List<BookLoans> loanBooks;
+	@OneToMany(mappedBy = "book", 
+			cascade = CascadeType.ALL)
+	private List<BookLoans> bookLoans;
 
 	/*
 	 * Getters

@@ -39,10 +39,12 @@ public class AdminSVC {
 	}
 
 	public void createBook(Book book) {
-		if (book.getTitle() != null) {
+		if (book.getId() != null) {
+			throw new ConstraintViolationException("Invalid Request Body: Id in Request Body", null, "bookId");
+		} else if (book.getTitle() != null) {
 			bookDAO.save(book);
 		} else {
-			throw new ConstraintViolationException("Invalid Request Body", null, "title");
+			throw new ConstraintViolationException("Invalid Request Body: Missing title", null, "title");
 		}
 	}
 
@@ -70,10 +72,12 @@ public class AdminSVC {
 	}
 
 	public void createAuthor(Author author) {
-		if (author.getName() != null) {
+		if (author.getId() != null) {
+			throw new ConstraintViolationException("Invalid Request Body: Id in Request Body", null, "authorId");
+		} else if (author.getName() != null) {
 			authorDAO.save(author);
 		} else {
-			throw new ConstraintViolationException("Invalid Request Body", null, "authorName");
+			throw new ConstraintViolationException("Invalid Request Body: Missing authorName", null, "authorName");
 		}
 	}
 
@@ -101,10 +105,12 @@ public class AdminSVC {
 	}
 
 	public void createPublisher(Publisher publisher) {
-		if (publisher.getName() != null) {
+		if (publisher.getId() != null) {
+			throw new ConstraintViolationException("Invalid Request Body: Id in Request Body", null, "publisherId");
+		} else if (publisher.getName() != null) {
 			publisherDAO.save(publisher);
 		} else {
-			throw new ConstraintViolationException("Invalid Request Body", null, "publisherName");
+			throw new ConstraintViolationException("Invalid Request Body: Missing publisherName", null, "publisherName");
 		}
 	}
 
@@ -132,10 +138,12 @@ public class AdminSVC {
 	}
 
 	public void createBranch(Branch branch) {
-		if (branch.getName() != null) {
+		if (branch.getId() != null) {
+			throw new ConstraintViolationException("Invalid Request Body: Id in Request Body", null, "branchId");
+		} else if (branch.getName() != null) {
 			branchDAO.save(branch);
 		} else {
-			throw new ConstraintViolationException("Invalid Request Body", null, "branchName");
+			throw new ConstraintViolationException("Invalid Request Body: Missing branchName", null, "branchName");
 		}
 	}
 
@@ -152,7 +160,7 @@ public class AdminSVC {
 			if (branch.getName() != null) {
 				branchDAO.save(branch);
 			} else {
-				throw new ConstraintViolationException("Invalid Request Body", null, "branchName");
+				throw new ConstraintViolationException("Invalid Request Body: Missing branchName", null, "branchName");
 			}
 		} else {
 			throw new NotFoundException("BranchId not found: " + branch.getId());
@@ -167,10 +175,12 @@ public class AdminSVC {
 	}
 
 	public void createBorrower(Borrower borrower) {
-		if (borrower.getName() != null) {
+		if (borrower.getCardNo() != null) {
+			throw new ConstraintViolationException("Invalid Request Body: Id In Request Body", null, "borrowerId");
+		} else if (borrower.getName() != null) {
 			borrowerDAO.save(borrower);
 		} else {
-			throw new ConstraintViolationException("Invalid Request Body", null, "borrowerName");
+			throw new ConstraintViolationException("Invalid Request Body: Missing borrowerName", null, "borrowerName");
 		}
 	}
 
@@ -187,7 +197,7 @@ public class AdminSVC {
 			if (borrower.getName() != null) {
 				borrowerDAO.save(borrower);
 			} else {
-				throw new ConstraintViolationException("Invalid Request Body", null, "borrowerName");
+				throw new ConstraintViolationException("Invalid Request Body: Missing borrowerName", null, "borrowerName");
 			}
 		} else {
 			throw new NotFoundException("BorrowerId not found: " + borrower.getCardNo());
@@ -204,5 +214,4 @@ public class AdminSVC {
 	public void updateBookLoan(BookLoans loan) {
 		loansDAO.save(loan);
 	}
-
 }

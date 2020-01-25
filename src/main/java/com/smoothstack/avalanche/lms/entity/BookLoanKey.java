@@ -2,50 +2,76 @@ package com.smoothstack.avalanche.lms.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 public class BookLoanKey implements Serializable{
 
 	private static final long serialVersionUID = 4052024536501925521L;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "book_id")
-	private Book book;
+	private Long bookId;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "branch_id")
-	private Branch branch;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "card_no")
-	private Borrower borrower;
-    /*
-     * Equals and Hash-code
-     */
-    
+	private Long branchId;
+	
+	private Long cardNo;
+	
     /*
      * Getters and Setters
      */
-	public Book getBook() {
-		return book;
+	public Long getBookId() {
+		return bookId;
 	}
-	public void setBook(Book book) {
-		this.book = book;
+	public void setBookId(Long bookId) {
+		this.bookId = bookId;
 	}
-
-	public Branch getBranch() {
-		return branch;
+	
+	public Long getBranchId() {
+		return branchId;
 	}
-	public void setBranch(Branch branch) {
-		this.branch = branch;
+	public void setBranchId(Long branchId) {
+		this.branchId = branchId;
 	}
-
-	public Borrower getBorrower() {
-		return borrower;
+	
+	public Long getCardNo() {
+		return cardNo;
 	}
-	public void setBorrower(Borrower borrower) {
-		this.borrower = borrower;
+	public void setCardNo(Long cardNo) {
+		this.cardNo = cardNo;
+	}
+	
+    /*
+     * Equals and Hash-code
+     */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bookId == null) ? 0 : bookId.hashCode());
+		result = prime * result + ((branchId == null) ? 0 : branchId.hashCode());
+		result = prime * result + ((cardNo == null) ? 0 : cardNo.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookLoanKey other = (BookLoanKey) obj;
+		if (bookId == null) {
+			if (other.bookId != null)
+				return false;
+		} else if (!bookId.equals(other.bookId))
+			return false;
+		if (branchId == null) {
+			if (other.branchId != null)
+				return false;
+		} else if (!branchId.equals(other.branchId))
+			return false;
+		if (cardNo == null) {
+			if (other.cardNo != null)
+				return false;
+		} else if (!cardNo.equals(other.cardNo))
+			return false;
+		return true;
 	}
 }

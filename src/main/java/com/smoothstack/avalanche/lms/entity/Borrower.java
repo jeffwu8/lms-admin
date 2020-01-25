@@ -2,6 +2,7 @@ package com.smoothstack.avalanche.lms.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,8 @@ public class Borrower {
 	@Column(name = "phone")
 	private String phone;
 	
-	@OneToMany(mappedBy = "bookLoanKey.borrower")
+	@OneToMany(mappedBy = "borrower", 
+			cascade = CascadeType.ALL)
 	private List<BookLoans> loanBooks;
     /*
      * Equals and Hash-code
