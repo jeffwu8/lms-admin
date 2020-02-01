@@ -37,7 +37,7 @@ public class AdminController {
 		return adminService.readAllAuthors();
 	}
 
-	@PostMapping(path = "/author")
+	@PostMapping(path = "/authors")
 	public ResponseEntity<Author> createAuthor(@Valid @RequestBody Author author) {
 		adminService.createAuthor(author);
 		ResponseEntity<Author> response = new ResponseEntity<Author>(HttpStatus.CREATED);
@@ -67,7 +67,7 @@ public class AdminController {
 		return adminService.readAllBooks();
 	}
 
-	@PostMapping(path = "/book")
+	@PostMapping(path = "/books")
 	public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) {
 		adminService.createBook(book);
 		ResponseEntity<Book> response = new ResponseEntity<Book>(HttpStatus.CREATED);
@@ -96,7 +96,7 @@ public class AdminController {
 		return adminService.readAllPublishers();
 	}
 
-	@PostMapping(path = "/publisher")
+	@PostMapping(path = "/publishers")
 	public ResponseEntity<Publisher> createPublisher(@Valid @RequestBody Publisher publisher) {
 		adminService.createPublisher(publisher);
 		ResponseEntity<Publisher> response = new ResponseEntity<Publisher>(HttpStatus.CREATED);
@@ -126,7 +126,7 @@ public class AdminController {
 		return adminService.readAllBranches();
 	}
 
-	@PostMapping(path = "/branch")
+	@PostMapping(path = "/branches")
 	public ResponseEntity<Branch> createBranch(@Valid @RequestBody Branch branch) {
 		adminService.createBranch(branch);
 		ResponseEntity<Branch> response = new ResponseEntity<Branch>(HttpStatus.CREATED);
@@ -156,7 +156,7 @@ public class AdminController {
 		return adminService.readAllBorrowers();
 	}
 
-	@PostMapping(path = "/borrower")
+	@PostMapping(path = "/borrowers")
 	public ResponseEntity<Borrower> createBorrower(@Valid @RequestBody Borrower borrower) {
 		adminService.createBorrower(borrower);
 		ResponseEntity<Borrower> response = new ResponseEntity<Borrower>(HttpStatus.CREATED);
