@@ -1,6 +1,9 @@
 # LMS Administrator Microservice
 Implementation of a library management system admin REST API. Provides CRUD operations on following database tables: Authors, Books, Book Loans, Borrowers, Branches, and Publishers through HTTP requests.
 
+### Motivation
+Practice designing and building a RESTful API with a layered architecture using Maven, Spring Boot, and an ORM (Hibernate). [Previous version](https://github.com/jeffwu8/lms-jdbc) used self-built DAO's using JdbcTemplate following a monolithic architectural approach.
+
 ## Getting Started
 
 ### Prerequisites
